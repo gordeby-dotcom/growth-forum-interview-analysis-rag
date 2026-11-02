@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Growth Forum · Interview Analysis</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/style.css?v=1793648361" />
+</head>
+<body>
+
+  <!-- Password Gate Modal -->
+  <div id="auth-overlay" class="auth-overlay">
+    <div class="auth-modal">
+      <div class="auth-logo">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+          <rect width="32" height="32" rx="4" fill="#007B40"/>
+          <path d="M8 16C8 11.6 11.6 8 16 8C20.4 8 24 11.6 24 16C24 20.4 20.4 24 16 24" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="16" cy="16" r="3" fill="white"/>
+        </svg>
+        <span>Fidelity</span>
+      </div>
+      <h2>Growth Forum</h2>
+      <p class="auth-subtitle">Interview Analysis Workspace</p>
+      <form id="auth-form">
+        <div class="auth-field">
+          <label for="password">Access Password</label>
+          <input type="password" id="password" placeholder="Enter password" autocomplete="current-password" />
+        </div>
+        <div id="auth-error" class="auth-error hidden">Incorrect password. Try again.</div>
+        <button type="submit" class="btn-primary">Enter Workspace</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Main App -->
+  <div id="app" class="app hidden">
+
+    <!-- Header -->
+    <header class="header">
+      <div class="header-left">
+        <button id="sidebar-toggle" class="sidebar-toggle" aria-label="Toggle menu" type="button">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <line x1="3" y1="12" x2="21" y2="12"/>
+            <line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+        </button>
+        <svg width="24" height="24" viewBox="0 0 32 32" fill="none">
+          <rect width="32" height="32" rx="4" fill="#007B40"/>
+          <path d="M8 16C8 11.6 11.6 8 16 8C20.4 8 24 11.6 24 16C24 20.4 20.4 24 16 24" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="16" cy="16" r="3" fill="white"/>
+        </svg>
+        <div class="header-title">
+          <span class="header-brand">Fidelity</span>
+          <span class="header-sep">·</span>
+          <span class="header-name">Growth Forum Interview Analysis</span>
+        </div>
+      </div>
+      <div class="header-right">
+        <span id="token-display" class="token-display"></span>
+        <button id="clear-btn" class="btn-ghost" title="Clear conversation">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="3 6 5 6 21 6"/>
+            <path d="M19 6l-1 14H6L5 6"/>
+            <path d="M10 11v6M14 11v6"/>
+            <path d="M9 6V4h6v2"/>
+          </svg>
+          Clear
+        </button>
+      </div>
+    </header>
+
+    <div class="layout">
+
+      <div id="sidebar-backdrop" class="sidebar-backdrop"></div>
+
+      <!-- Sidebar -->
+      <aside class="sidebar" id="sidebar">
+
+        <section class="sidebar-section" id="conversations-section">
+          <h3 class="sidebar-heading">Conversations</h3>
+          <div id="conversations-list" class="conversations-list">
+            <p class="conversations-empty">No saved conversations yet.</p>
+          </div>
+        </section>
+
+        <section class="sidebar-section">
+          <h3 class="sidebar-heading">Quick Prompts</h3>
+          <div class="quick-prompts">
+            <button class="quick-prompt" data-prompt="What are the top 3 to 5 themes that appear consistently across all the interviews?">Top Themes</button>
+            <button class="quick-prompt" data-prompt="Based on the interviews, how do participants define 'growth' — and where do those definitions differ across stakeholder groups?">Defining Growth</button>
+            <button class="quick-prompt" data-prompt="What do the interviews say about Fidelity's role in client growth — where Fidelity uniquely adds value and where it should stay out of the way?">Fidelity's Role in Growth</button>
+            <button class="quick-prompt" data-prompt="What do the interviews say about preferred event format, session length, and use of time for Growth Forum?">Format & Time</button>
+            <button class="quick-prompt" data-prompt="Based on the interviews, what concrete agenda design ideas should we consider for Growth Forum — flow, anchor moments, mix of formats, and pacing?">Agenda Design Ideas</button>
+            <button class="quick-prompt" data-prompt="What do the interviews suggest about peer learning at Growth Forum — formats, group composition, facilitation, and what makes peer exchange genuinely valuable?">Peer Learning Ideas</button>
+            <button class="quick-prompt" data-prompt="What would make the Growth Forum event experience distinctive and differentiated from other industry conferences and Fidelity's own events?">Event Experience & Differentiation</button>
+            <button class="quick-prompt" data-prompt="Surface the boldest 'spark' ideas and #WhatIfWe provocations from the interviews — unconventional moves worth pressure-testing in the DesignShop.">Spark Ideas / #WhatIfWe</button>
+            <button class="quick-prompt" data-prompt="How should Growth Forum relate to and differ from Executive Forum across audience, purpose, content, format, and positioning?">Growth Forum vs. Executive Forum</button>
+            <button class="quick-prompt" data-prompt="Pull the most illustrative interview quotes across the transcripts — short, attributed, and useful for a workshop deck or facilitation note.">Interview Quotes</button>
+            <button class="quick-prompt" data-prompt="Synthesize the most relevant insights from the external research documents (B2B/RIA conference strategy, in-person collaboration trends) and connect them to what we're hearing in the Fidelity interviews. Where do they reinforce each other? Where do they push us further?">External Research</button>
+          </div>
+        </section>
+
+        <section class="sidebar-section">
+          <h3 class="sidebar-heading">Add Document</h3>
+          <label class="upload-btn" for="file-input">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="17 8 12 3 7 8"/>
+              <line x1="12" y1="3" x2="12" y2="15"/>
+            </svg>
+            Upload .md or .txt
+          </label>
+          <input type="file" id="file-input" accept=".md,.txt" class="hidden" />
+          <div id="upload-status" class="upload-status"></div>
+
+          <h3 class="sidebar-heading" style="margin-top:16px;">Loaded Documents</h3>
+          <ul id="doc-list" class="doc-list">
+            
+            <li class="doc-item preloaded" title="external_research_executive_b2b_conference_strategy.md">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#007B40" stroke-width="2.5">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              <span>external research executive b2b conference strategy</span>
+            </li>
+            
+            <li class="doc-item preloaded" title="external_research_in_person_collaboration_trends.md">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#007B40" stroke-width="2.5">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              <span>external research in person collaboration trends</span>
+            </li>
+            
+            <li class="doc-item preloaded" title="external_research_ria_conference_strategy.md">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#007B40" stroke-width="2.5">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              <span>external research ria conference strategy</span>
+            </li>
+            
+            <li class="doc-item preloaded" title="goulet_purpose_insights.md">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#007B40" stroke-width="2.5">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              <span>goulet purpose insights</span>
+            </li>
+            
+            <li class="doc-item preloaded" title="jordan_amanda_purpose_insights_1.md">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#007B40" stroke-width="2.5">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              <span>jordan amanda purpose insights 1</span>
+            </li>
+            
+            <li class="doc-item preloaded" title="liberi_purpose_insights.md">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#007B40" stroke-width="2.5">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              <span>liberi purpose insights</span>
+            </li>
+            
+            <li class="doc-item preloaded" title="norton_peros_leonhardt_purpose_insights.md">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#007B40" stroke-width="2.5">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              <span>norton peros leonhardt purpose insights</span>
+            </li>
+            
+            <li class="doc-item preloaded" title="squires_hunt_jones_swauger_purpose_insights.md">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#007B40" stroke-width="2.5">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              <span>squires hunt jones swauger purpose insights</span>
+            </li>
+            
+            <li class="doc-item preloaded" title="steve_richard_purpose_insights.md">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#007B40" stroke-width="2.5">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              <span>steve richard purpose insights</span>
+            </li>
+            
+            <li class="doc-item preloaded" title="tobias_donath_interview_analysis.md">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#007B40" stroke-width="2.5">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              <span>tobias donath interview analysis</span>
+            </li>
+            
+          </ul>
+          <div id="uploaded-doc-list"></div>
+        </section>
+
+      </aside>
+
+      <!-- Chat area -->
+      <main class="chat-area">
+        <div id="messages" class="messages">
+          <div class="welcome-message">
+            <div class="welcome-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#007B40" stroke-width="1.5">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+              </svg>
+            </div>
+            <h2>Growth Forum · Interview Analysis</h2>
+            <p>Interview transcripts are loaded and ready. Ask a question or use a Quick Prompt to begin.</p>
+          </div>
+        </div>
+
+        <div class="input-area">
+          <div class="input-wrapper">
+            <textarea
+              id="user-input"
+              placeholder="Ask about themes, tensions, quotes, design implications, or anything from the interviews…"
+              rows="3"
+            ></textarea>
+            <button id="send-btn" class="send-btn" title="Send (Enter)">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="22" y1="2" x2="11" y2="13"/>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+              </svg>
+            </button>
+          </div>
+          <div class="input-meta">
+            <span>Enter to send · Shift+Enter for new line</span>
+            <span id="char-count"></span>
+          </div>
+        </div>
+      </main>
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked@9/marked.min.js"></script>
+  <script src="/static/script.js?v=1793648361"></script>
+</body>
+</html>
